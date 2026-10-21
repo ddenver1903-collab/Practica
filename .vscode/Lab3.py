@@ -322,30 +322,26 @@ def traverse(head):
     while cursor:
         print(cursor.data)
         cursor = cursor.next
-    node1 = Node(10)
-def RemoveDuplicates(head):
+def RemoveDuplicats(head):
     numb = set()
     cursor = head
-    numb.add(cursor.data)
+    numb.add(head.data)
     while cursor.next:
         if cursor.next.data in numb:
             cursor.next = cursor.next.next
         else:
             numb.add(cursor.next.data)
-            cursor = cursor.next
+        cursor = cursor.next
 node1 = Node(10)
 node2 = Node(20)
 node3 = Node(10)
 node4 = Node(30)
 node5 = Node(20)
-node6 = Node(40)
 node1.next = node2
 node2.next = node3
 node3.next = node4
-node4.next = node5  
-node5.next = node6
+node4.next = node5
 print("Before:")
 traverse(node1)
-RemoveDuplicates(node1)
+RemoveDuplicats(node1)
 print("After:")
-traverse(node1)

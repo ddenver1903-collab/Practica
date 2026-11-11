@@ -54,16 +54,10 @@ class BinarySearchTree:
             else:
                 current = current.right
         return False
-    def inorder(self,root):
-        if root:
-            self.inorder(root.left)
-            print(root.key)
-            self.inorder(root.right)
 bst = BinarySearchTree()
 keys = [50,30,70,20,40,60,80]
 for key in keys:
     bst.insert(key)
-bst.inorder(bst.root)
 print(bst.search(50))
 print(bst.search(90))"""
 """class Node:
@@ -630,12 +624,16 @@ class AVLTree:
             else:
                 return
     def left_rotate(self, x):
+        if x is None or x.left is None:
+            return x
         y = x.right
         T2 = y.left
         y.left = x
         x.right = T2
         return y
     def right_rotate(self, y):
+        if y is None or y.left is None:
+            return y
         x = y.left
         T2 = x.right
         x.right = y
@@ -815,7 +813,7 @@ class AVLTree:
         while root.left:
             root = root.left
         return root
-    def delete_node(self,root, alue):
+    def delete_node(self,root, value):
         if root is None:
             return None
         if value < root.key:
@@ -1030,7 +1028,7 @@ avl.inorder(avl.root)
 print("Final height:",avl.get_height(avl.root))
 print("Balance factors:")
 avl.display(avl.root)"""
-"""class Node:
+class Node:
     def __init__(self,id,score):
         self.id = id
         self.score = score
@@ -1180,4 +1178,4 @@ avl.remove(107)
 print("Updated ranking:")
 avl.display(avl.root)
 print()
-avl.highest_score()"""
+avl.highest_score()

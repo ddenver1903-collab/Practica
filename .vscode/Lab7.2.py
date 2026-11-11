@@ -529,3 +529,44 @@ helpdesk.view_next_ticket()
 helpdesk.process_ticket()
 helpdesk.process_ticket()
 helpdesk.display_tickets()"""
+
+
+
+
+
+import heapq
+class priorityq():
+    def __init__(self):
+        self.heap = []
+        self.counter = 0
+        self.tasks = {}
+    def add(self,name,priority):
+        self.tasks[name] = priority
+        self.counter += 1
+        heapq.heappush(self.heap,(priority,self.counter,name))
+    def update_priority(self,name,n_priority):
+        if name in self.tasks:
+            self.tasks[name] = n_priority
+            self.counter += 1
+            heapq.heappush(self.heap,(n_priority,self.counter,name))
+            print(name,"new priority",n_priority)
+        else:
+            print("No task found")
+    def execute_task(self):
+        while self.heap:
+            priority, counter, name = heapq.heappop(self.heap)
+            if name in self.tasks and self.tasks[name] == priority:
+                del self.tasks[name]
+                print("Executing:", name, "Priority:", priority)
+                return name
+        print("Queue is empty")
+    def display(self):
+        print("Current tasks:")
+        for name, priority in sorted(self.tasks.items(), key=lambda x: x[1]):
+            print(name, "-", priority)
+pq = priorityq()
+pq.add("Task a",1)
+pq.add("Task b",2)
+pq.add("Task c",3)
+pq.update_priority("Task a",4)
+pq.display()

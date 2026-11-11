@@ -538,3 +538,96 @@ print("Next patient:",hospital.peek_patient())
 print("Treating patient:",hospital.treat_patient())
 print("After treatment:")
 hospital.display()"""
+"""class minh():
+    def __init__(self):
+        self.heap = []
+    def insert(self,value):
+        self.heap.append(value)
+        idx = len(self.heap) - 1
+        while idx > 0:
+            parent = (idx - 1) // 2
+            if self.heap[idx] < self.heap[parent]:
+                self.heap[idx],self.heap[parent] = self.heap[parent],self.heap[parent]
+                idx = parent
+            else:
+                break
+    def h_down(self,idx):
+        smallest = idx
+        left = 2 * idx + 1
+        right = 2 * idx + 2
+        if left < len(self.heap) and self.heap[left] < self.heap[smallest]:
+            smallest = left
+        if right < len(self.heap) and self.heap[right] < self.heap[smallest]:
+            smallest = right
+        if smallest != idx:
+            self.heap[idx],self.heap[smallest] = self.heap[smallest],self.heap[idx]
+            self.h_down(smallest)
+    def replace(self):
+        self.heap[0] = self.heap[-1]
+        self.heap.pop()
+        self.h_down(0)
+    def h_up(self,idx):
+        while idx > 0:
+            parent = (idx - 1) // 2
+            if self.heap[idx] < self.heap[parent]:
+                self.heap[idx],self.heap[parent] = self.heap[parent],self.heap[parent]
+                idx = parent
+            else:
+                break
+    def extract(self):
+        smallest = self.heap[0]
+        self.heap[0] = self.heap[-1]
+        self.heap.pop()
+        if len(self.heap) > 0:
+            self.h_down(0)
+        return smallest  
+    def empty(self):
+        return len(self.heap) == 0
+    def peek(self):
+        return self.heap[0]
+    def built(self,arr):
+        self.heap = arr
+        n = len(arr)
+        for i in range(n // 2 - 1,-1,-1):
+            self.h_down(i)"""
+
+
+
+
+
+
+
+
+class min_heap():
+    def __init__(self):
+        self.heap = []
+    def h_down(self,idx):
+        smallest = idx
+        left = 2 * idx + 1
+        right = 2 * idx +2
+        if left < len(self.heap) and self.heap[left] < self.heap[smallest]:
+            smallest = left
+        if right < len(self.heap) and self.heap[right] < self.heap[smallest]:
+            smallest = right
+        if smallest != idx:
+            self.heap[smallest],self.heap[idx] = self.heap[idx],self.heap[smallest]
+            self.h_down(smallest)
+    def peek(self):
+        return self.heap[0]
+    def built(self,arr):
+        self.heap = arr
+        n = len(arr)
+        for i in range(n // 2 - 1,-1,-1):
+            self.h_down(i)
+    def replace(self):
+        self.heap[0] = self.heap[-1]
+        self.heap.pop()
+        self.h_down(0)
+minh = min_heap()
+arr = [5,4,8,9,2,3,7]
+minh.built(arr)
+k = 3
+for i in range(k):
+    print(minh.peek())
+    minh.replace()
+    

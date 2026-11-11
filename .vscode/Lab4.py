@@ -228,7 +228,7 @@ while queue:
     print(f"Task {task_id}: {student} - {pages} pages")
     total += pages
 print("Total number of pags printed:",total)"""
-class editor:
+"""class editor:
     def __init__(self):
         self.text = ""
         self.undo_stack = []
@@ -252,5 +252,4 @@ edit.show()
 edit.undo()
 edit.show()
 edit.redo()
-edit.show()
-
+edit.show()"""
